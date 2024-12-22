@@ -49,7 +49,7 @@
 /datum/equipment_preset/twe/royal_expeditionary
 	name = "Royal Expeditionary Group Team Member"
 	assignment = "Doctor"
-	rank = JOB_TWE_REG_DOCTOR
+	rank = JOB_TWE_REG_RESEARCHER
 	var/human_versus_human = FALSE
 	///Gives the Royal Marines their radios
 	var/headset_type = /obj/item/device/radio/headset/distress/royal_marine
@@ -58,13 +58,20 @@
 // ***************************************************************************************************/scientist
 
 /datum/equipment_preset/twe/royal_expeditionary/standard
-	name = "TWE Royal Marine Commando (Rifleman)"
+	name = "TWE Royal Expeditionary Group (Researcher)"
 	paygrades = list(PAY_SHORT_CDOC = JOB_PLAYTIME_TIER_0)
 	role_comm_title = "REG"
 	flags = EQUIPMENT_PRESET_EXTRA
 	assignment = "Royal Expeditionary"
-	rank = JOB_TWE_REG_DOCTOR
+	rank = JOB_TWE_REG_RESEARCHER
 
 	minimap_icon = "reg_researcher"
 
 	skills = /datum/skills/rmc
+
+/datum/equipment_preset/twe/royal_expeditionary/standard/load_gear(mob/living/carbon/human/new_human)
+	new_human.equip_to_slot_or_del(new headset_type, WEAR_L_EAR)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit/corporate_formal, WEAR_BODY)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/latex, WEAR_HANDS)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup, WEAR_FEET)
+	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health/science, WEAR_EYES)
